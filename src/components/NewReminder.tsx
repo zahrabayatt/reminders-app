@@ -1,10 +1,21 @@
 import { useState } from "react";
 
-const NewReminder = () => {
+interface NewReminderProps {
+  onAddReminder: (title: string) => void;
+}
+
+const NewReminder = ({ onAddReminder }: NewReminderProps) => {
   const [title, setTitle] = useState("");
 
+  const submitForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!title) return;
+    onAddReminder(title);
+    setTitle("");
+  };
+
   return (
-    <form>
+    <form onSubmit={submitForm}>
       <label htmlFor="title"></label>
       <input
         id="title"
