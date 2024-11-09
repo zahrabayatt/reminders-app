@@ -1,3 +1,4 @@
-let x: number = 1;
+import express from "express";
 
-console.log(x);
+const app = express();
+app.listen(8000, () => console.log("Server started"));
